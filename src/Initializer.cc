@@ -20,7 +20,7 @@
 
 #include "Initializer.h"
 
-#include "Thirdparty/DBoW2/DUtils/Random.h"
+#include "DUtils/Random.h"
 
 #include "Optimizer.h"
 #include "ORBmatcher.h"
@@ -634,7 +634,8 @@ bool Initializer::ReconstructH(vector<bool> &vbMatchesInliers, cv::Mat &H21, cv:
         tp*=d1-d3;
 
         cv::Mat t = U*tp;
-        vt.push_back(t/cv::norm(t));
+        cv::Mat t_norm = t/cv::norm(t);
+        vt.push_back(t_norm);
 
         cv::Mat np(3,1,CV_32F);
         np.at<float>(0)=x1[i];
@@ -672,7 +673,8 @@ bool Initializer::ReconstructH(vector<bool> &vbMatchesInliers, cv::Mat &H21, cv:
         tp*=d1+d3;
 
         cv::Mat t = U*tp;
-        vt.push_back(t/cv::norm(t));
+        cv::Mat t_norm = t/cv::norm(t);
+        vt.push_back(t_norm);
 
         cv::Mat np(3,1,CV_32F);
         np.at<float>(0)=x1[i];

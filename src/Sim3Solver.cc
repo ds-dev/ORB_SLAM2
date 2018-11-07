@@ -28,7 +28,7 @@
 #include "KeyFrame.h"
 #include "ORBmatcher.h"
 
-#include "Thirdparty/DBoW2/DUtils/Random.h"
+#include "DUtils/Random.h"
 
 namespace ORB_SLAM2
 {
@@ -92,10 +92,12 @@ Sim3Solver::Sim3Solver(KeyFrame *pKF1, KeyFrame *pKF2, const vector<MapPoint *> 
             mvnIndices1.push_back(i1);
 
             cv::Mat X3D1w = pMP1->GetWorldPos();
-            mvX3Dc1.push_back(Rcw1*X3D1w+tcw1);
+            cv::Mat res = Rcw1*X3D1w+tcw1;
+            mvX3Dc1.push_back(res);
 
             cv::Mat X3D2w = pMP2->GetWorldPos();
-            mvX3Dc2.push_back(Rcw2*X3D2w+tcw2);
+            cv::Mat res2 = Rcw2*X3D2w+tcw2;
+            mvX3Dc2.push_back(res2);
 
             mvAllIndices.push_back(idx);
             idx++;
