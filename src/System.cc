@@ -25,6 +25,9 @@
 #include <thread>
 #include <pangolin/pangolin.h>
 #include <iomanip>
+#include <unistd.h>
+#include <vector>
+#include <opencv2/core.hpp>
 
 namespace ORB_SLAM2
 {
